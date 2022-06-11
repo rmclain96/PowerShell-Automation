@@ -2,7 +2,7 @@
 .SYNOPSIS  
     Verifies your final answer by intaking the given information provided to solve the ICE chart
 .DESCRIPTION  
-    (Detailed explanation here)
+    Verifies your final answer by intaking the given information provided to solve the ICE chart: Will remain unfinished due to priority change
 .NOTES  
     File Name  : Ice_Calculation.ps1  
     Author     : Ryan
