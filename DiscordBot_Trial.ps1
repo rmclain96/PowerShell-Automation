@@ -19,4 +19,5 @@
     Module: Microsoft.PowerShell.SecretManagement
 #>
 
-jobs.<job_id>.steps[*].env
+
+$Github_Personal_Access_Token = "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"
