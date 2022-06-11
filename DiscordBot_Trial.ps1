@@ -1,2 +1,5 @@
 $hello = "Basic String to ensure this is visible"
-$hello
+$AppID = "985312481926852648"
+$public_Key = "bdb90d2e81d65bc7df5699f09b89a05d05cae80cfe877f8515ab0fef8e14ba13"
+$ClientID = "985312481926852648"
+$Secret = "WvIRHUc1_FtRgxiPv5lvSQaNbugfK9mL"
