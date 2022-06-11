@@ -1,5 +1,22 @@
-$hello = "Basic String to ensure this is visible"
-$AppID = "985312481926852648"
-$public_Key = "bdb90d2e81d65bc7df5699f09b89a05d05cae80cfe877f8515ab0fef8e14ba13"
-$ClientID = "985312481926852648"
-$Secret = "WvIRHUc1_FtRgxiPv5lvSQaNbugfK9mL"
+<#
+.Synopsis
+   First attempt at a discord bot. We will see how much I am able to accomplish
+.DESCRIPTION
+   TBD
+.EXAMPLE
+   Example of how to use this cmdlet
+.INPUTS
+   Inputs to this cmdlet (if any)
+.OUTPUTS
+   Output from this cmdlet (if any)
+.NOTES
+   Author: Ryan L. McLain
+   Date last revised: 6/11/2022
+
+   Dependencies:
+    Powershell 5.1+
+    Module: PSDiscord
+    Module: Microsoft.PowerShell.SecretManagement
+#>
+
+jobs.<job_id>.steps[*].env
