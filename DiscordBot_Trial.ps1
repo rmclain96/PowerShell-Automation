@@ -18,6 +18,3 @@
     Module: PSDiscord
     Module: Microsoft.PowerShell.SecretManagement
 #>
-
-
-$Github_Personal_Access_Token = "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"
