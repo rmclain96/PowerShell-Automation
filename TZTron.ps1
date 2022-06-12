@@ -2,7 +2,7 @@
 .SYNOPSIS
     Runs the most updated version of Tron that can be found at: www.bmrf.org
 .DESCRIPTION
-    Verifies it is being launched with elevated privledges, then reaches out to https://www.bmrf.org/repos/tron/ and grabs the most recent version of Tron
+    Verifies it is being launched with elevated privledges, then reaches out to https://www.bmrf.org/repos/tron/ and grabs the most recent version of Tron. Tron then runs with minimal user interface.
 .NOTES
     AUTHOR: 	Ryan L. McLain (rmclain@ilstu.edu)
 	VERSION:	1.0.0
