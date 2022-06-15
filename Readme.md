@@ -11,4 +11,4 @@ Largest projects that I am  working on
 
 
 [TZTron.ps1](https://github.com/rmclain96/PowerShell-Automation/blob/main/TZTron.ps1)
-- Verifies it is being launched with elevated privledges, then reaches out to https://www.bmrf.org/repos/tron/ and grabs the most recent version of Tron. Tron then runs with minimal user interface.
+- Verifies Tron is being launched with elevated privledges, then reaches out to https://www.bmrf.org/repos/tron/ and grabs the most recent version of Tron. Tron then runs with minimal user interface.
