@@ -2,6 +2,7 @@
 .SYNOPSIS  
     Verifies your final answer by intaking the given information provided to solve the ICE chart
 .DESCRIPTION  
+    ICE stands for I nitial, C hange, E quilibrium. An ICE table is a tool used to calculate the changing concentrations of reactants and products in (dynamic) equilibrium reactions.
     Verifies your final answer by intaking the given information provided to solve the ICE chart: Will remain unfinished due to priority change
 .NOTES  
     File Name  : Ice_Calculation.ps1  
