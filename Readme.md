@@ -12,3 +12,6 @@ Largest projects that I am  working on
 
 [TZTron.ps1](https://github.com/rmclain96/PowerShell-Automation/blob/main/TZTron.ps1)
 - Verifies Tron is being launched with elevated privledges, then reaches out to https://www.bmrf.org/repos/tron/ and grabs the most recent version of Tron. Tron then runs with minimal user interface.
+
+[IceCalculation.ps1](https://github.com/rmclain96/PowerShell-Automation/blob/main/Ice_Calculation.ps1)
+- ICE stands for I nitial, C hange, E quilibrium. An ICE table is a tool used to calculate the changing concentrations of reactants and products in (dynamic) equilibrium reactions. Verifies your final answer by intaking the given information provided to solve the ICE chart: Will remain unfinished due to priority change
