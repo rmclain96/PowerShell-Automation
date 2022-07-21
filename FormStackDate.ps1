@@ -33,7 +33,26 @@ Param(
     [String] $OutputFileName = ".csv",
     #Download link for MalwareBytes
     [Parameter(Mandatory = $False)]
-    [String] $TBD = ""
+    [String] $TBD = 0
 )
 
-$Data = Import-CSV -Path "$InputFilePath/$InputFileName" | Select-Object Time
+#endregion Parameters
+
+#region Functions
+
+#endregion Functions
+
+#import CSV and only grab the time column
+$Data = Import-CSV -Path "$InputFilePath/$InputFileName" | Select-Object -expandProperty Time
+
+#For every Date/time change the date formatting to dd/MM/yyyy to more easily match lines
+ForEach($Line in $Data){
+   $Date = $Line.substring(0, $Line.indexof(' '))
+   $CheckInCount = ($Data |Where-Object {$_ -Like $Date}).count
+   
+   $CustomerInfo += @{
+   Date = $Date
+   Check_Ins = $CheckInCount
+   }
+
+}
