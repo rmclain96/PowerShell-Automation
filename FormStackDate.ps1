@@ -36,6 +36,7 @@ Param(
 
 #CHANGE THIS TO SET WHICH MONTH WILL BE USED FOR DATA SELECTION. By default, it will be set to 28 so that it will "always" do the prior month
 $DateFormat = (Get-date).AddDays(-28)
+#Report date format
 $ReportDate = get-date $dateformat -format "yyyy-MM"
 
 #endregion Parameters
@@ -75,9 +76,6 @@ ForEach($Line in $Data){
    $QuestionCount = $PriorMonth |Group-Object "What I Did:" | Select-Object Name, Count
 
 #endregion MonthlyReport
-
-
-
 
 #Sorts for DateOutput within $Datatable hash table based on the date column being seen as date/time and export CSV
 $DataTable.GetEnumerator() | Select-Object Name, Value | Sort-Object {$_.Name -as [DateTime]} | Export-CSV -Path "$FilePath/$OutputDateName-$ReportDate.csv" -NoTypeInformation
