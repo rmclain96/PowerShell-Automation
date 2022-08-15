@@ -22,7 +22,7 @@ Param(
     [String] $FilePath = 'C:\TechZone',
     #Filename of the input file
     [Parameter(Mandatory = $False)]
-    [String] $InputFileName = "Cardswipe_Data_07-20-22.csv",
+    [String] $InputFileName = "Cardswipe_Data_08-15-22.csv",
     #Filename of the output file
     [Parameter(Mandatory = $False)]
     [String] $OutputFileName = "Output.csv"
@@ -33,18 +33,18 @@ Param(
 #Datatable hashtable to be used later
 $DataTable = @{}
 #import CSV and only grab the time column
-$Data = Import-CSV -Path "$FilePath/$InputFileName" | Select-Object -expandProperty Time
+$Data = Import-CSV -Path "$FilePath/$InputFileName" | Select-Object Time, "My ULID", "What I did:"
 
 #For every Date/time change the date formatting to dd/MM/yyyy to more easily match lines
 ForEach($Line in $Data){
-   $Date = $Line.substring(0, $Line.indexof(' '))
+   $Date = $Line.time.substring(0, $Line.time.indexof(' '))
    
    #If this date is the same as the last date in $Data, skip to next line
    if($LastDate -contains $Date){
       Continue
    #Count the number of rows that share a date, and make that the Check-in data, then save it to a hashtable
    }Else{
-      $CheckInCount = ($Data |Where-Object {$_ -Like "$Date*"}).count
+      $CheckInCount = ($Data |Where-Object {$_.time -Like "$Date*"}).count
       $LastDate = $Date
 
       #Saves Date and check ins to a hashtable
