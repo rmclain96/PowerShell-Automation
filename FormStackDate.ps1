@@ -25,8 +25,18 @@ Param(
     [String] $InputFileName = "Cardswipe_Data_08-15-22.csv",
     #Filename of the output file
     [Parameter(Mandatory = $False)]
-    [String] $OutputFileName = "Output.csv"
+    [String] $OutputDateName = "OutputDates",
+   #Filename of the output file
+   [Parameter(Mandatory = $False)]
+   [String] $OutputULIDName = "OutputULID",
+   #Filename of the output file
+   [Parameter(Mandatory = $False)]
+   [String] $OutputQuestionName = "OutputQuestions"
 )
+
+#CHANGE THIS TO SET WHICH MONTH WILL BE USED FOR DATA SELECTION. By default, it will be set to 28 so that it will "always" do the prior month
+$DateFormat = (Get-date).AddDays(-28)
+$ReportDate = get-date $dateformat -format "yyyy-MM"
 
 #endregion Parameters
 
@@ -35,6 +45,7 @@ $DataTable = @{}
 #import CSV and only grab the time column
 $Data = Import-CSV -Path "$FilePath/$InputFileName" | Select-Object Time, "My ULID", "What I did:"
 
+#region DateOutput
 #For every Date/time change the date formatting to dd/MM/yyyy to more easily match lines
 ForEach($Line in $Data){
    $Date = $Line.time.substring(0, $Line.time.indexof(' '))
@@ -53,6 +64,22 @@ ForEach($Line in $Data){
       }
    }
 }
+#endregion DateOutput
 
-#Sorts the hash table based on the date column being seen as date/time rather than a string and exports it as a CSV
-$DataTable.GetEnumerator() | Select-Object Name, Value | Sort-Object {$_.Name -as [DateTime]} | Export-CSV -Path "$FilePath/$OutputFileName" -NoTypeInformation
+#region MonthlyReport
+
+   $PriorMonth = $Data | Where-Object {(get-date $_.Time -format "yyyy-MM") -eq (get-date $Dateformat -Format "yyyy-MM")}
+
+   #Groups the columns to count all instances of every value. So that we can see how many times a value occurred.
+   $ULIDCount = $PriorMonth | Group-Object "My ULID" | Select-Object Name, Count
+   $QuestionCount = $PriorMonth |Group-Object "What I Did:" | Select-Object Name, Count
+
+#endregion MonthlyReport
+
+
+
+
+#Sorts for DateOutput within $Datatable hash table based on the date column being seen as date/time and export CSV
+$DataTable.GetEnumerator() | Select-Object Name, Value | Sort-Object {$_.Name -as [DateTime]} | Export-CSV -Path "$FilePath/$OutputDateName-$ReportDate.csv" -NoTypeInformation
+$QuestionCount | Export-CSV -Path "$FilePath/$OutputQuestionName-$ReportDate.csv" -NoTypeInformation
+$ULIDCount | Export-CSV -Path "$FilePath/$OutputULIDName-$reportDate.csv" -NoTypeInformation
