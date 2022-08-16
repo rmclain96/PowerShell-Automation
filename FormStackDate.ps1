@@ -1,8 +1,8 @@
 <#
 .Synopsis
-   Intakes a CSV that holds formstack data, outputs daily information for easy review
+   Intakes a CSV that holds formstack data, outputs 3 metrics reports
 .DESCRIPTION
-   Intakes a CSV that holds formstack data of dates and categories for service counter help, sorts the data and then exports it into an easily readable format
+   Intakes a CSV that holds formstack data, outputs metrics reports for daily traffic, traffic metrics, and employee statistics into CSVs
 .EXAMPLE
    Change file paths and names to fit your files, and no further modifications should be required
 .OUTPUTS
@@ -34,10 +34,10 @@ Param(
    [String] $OutputQuestionName = "OutputQuestions"
 )
 
-#CHANGE THIS TO SET WHICH MONTH WILL BE USED FOR DATA SELECTION. By default, it will be set to 28 so that it will "always" do the prior month
-$DateFormat = (Get-date).AddDays(-28)
+#CHANGE THIS TO SET WHICH MONTH the report will run for. By default it is set to -1 so that it runs last months report.
+$Month = (Get-Date).Month-1
 #Report date format
-$ReportDate = get-date $dateformat -format "yyyy-MM"
+$ReportDate = get-date -Month $Month -format "yyyy-MM"
 
 #endregion Parameters
 
