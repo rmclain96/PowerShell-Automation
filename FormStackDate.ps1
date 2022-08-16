@@ -69,7 +69,7 @@ ForEach($Line in $Data){
 
 #region MonthlyReport
 
-   $PriorMonth = $Data | Where-Object {(get-date $_.Time -format "yyyy-MM") -eq (get-date $Dateformat -Format "yyyy-MM")}
+   $PriorMonth = $Data | Where-Object {(get-date $_.Time -format "yyyy-MM") -eq $ReportDate}
 
    #Groups the columns to count all instances of every value. So that we can see how many times a value occurred.
    $ULIDCount = $PriorMonth | Group-Object "My ULID" | Select-Object Name, Count
@@ -80,4 +80,4 @@ ForEach($Line in $Data){
 #Sorts for DateOutput within $Datatable hash table based on the date column being seen as date/time and export CSV
 $DataTable.GetEnumerator() | Select-Object Name, Value | Sort-Object {$_.Name -as [DateTime]} | Export-CSV -Path "$FilePath/$OutputDateName-$ReportDate.csv" -NoTypeInformation
 $QuestionCount | Export-CSV -Path "$FilePath/$OutputQuestionName-$ReportDate.csv" -NoTypeInformation
-$ULIDCount | Export-CSV -Path "$FilePath/$OutputULIDName-$reportDate.csv" -NoTypeInformation
+$ULIDCount | Export-CSV -Path "$FilePath/$OutputULIDName-$ReportDate.csv" -NoTypeInformation
